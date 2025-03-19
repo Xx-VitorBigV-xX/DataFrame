@@ -1,0 +1,125 @@
+<html>
+<head>
+<title>main.py</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #a71d5d;}
+.s1 { color: #333333;}
+.s2 { color: #63a35c;}
+.s3 { color: #183691;}
+.s4 { color: #969896;}
+.s5 { color: #0086b3;}
+</style>
+</head>
+<body bgcolor="#ffffff">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#c0c0c0" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+main.py</font>
+</center></td></tr></table>
+<pre><span class="s0">import </span><span class="s1">pandas </span><span class="s0">as </span><span class="s1">pd</span>
+<span class="s0">import </span><span class="s1">matplotlib</span><span class="s2">.</span><span class="s1">pyplot </span><span class="s0">as </span><span class="s1">plt</span>
+<span class="s0">import </span><span class="s1">numpy </span><span class="s0">as </span><span class="s1">np</span>
+
+
+<span class="s1">df </span><span class="s0">= </span><span class="s1">pd</span><span class="s2">.</span><span class="s1">read_csv</span><span class="s2">(</span><span class="s3">'AmesHousing.csv'</span><span class="s2">)</span>
+
+<span class="s1">print</span><span class="s2">(</span><span class="s1">df</span><span class="s2">.</span><span class="s1">head</span><span class="s2">())</span>
+
+
+<span class="s4">#Calculando Media de colunas especificas comando(.mean())</span>
+<span class="s4">#Calculando SalePrice</span>
+<span class="s1">print</span><span class="s2">(</span><span class="s3">&quot;--- Medias ---&quot;</span><span class="s2">)</span>
+<span class="s1">print</span><span class="s2">(</span><span class="s1">df</span><span class="s2">[</span><span class="s3">'SalePrice'</span><span class="s2">].</span><span class="s1">mean</span><span class="s2">())</span>
+<span class="s4">#Calculando GrLivArea</span>
+<span class="s1">print</span><span class="s2">(</span><span class="s1">df</span><span class="s2">[</span><span class="s3">'Gr Liv Area'</span><span class="s2">].</span><span class="s1">mean</span><span class="s2">())</span>
+<span class="s4">#Calculando Overall Qual</span>
+<span class="s1">print</span><span class="s2">(</span><span class="s1">df</span><span class="s2">[</span><span class="s3">'Overall Qual'</span><span class="s2">].</span><span class="s1">mean</span><span class="s2">())</span>
+
+<span class="s4">#Calculando eMediana de colunas especificas comando(.median())</span>
+<span class="s4">#Calculando mediana de SalePrice</span>
+<span class="s1">print</span><span class="s2">(</span><span class="s3">&quot;\n--- Mediana ---&quot;</span><span class="s2">)</span>
+<span class="s1">print</span><span class="s2">(</span><span class="s1">df</span><span class="s2">[</span><span class="s3">'SalePrice'</span><span class="s2">].</span><span class="s1">median</span><span class="s2">())</span>
+<span class="s1">print</span><span class="s2">(</span><span class="s1">df</span><span class="s2">[</span><span class="s3">'Gr Liv Area'</span><span class="s2">].</span><span class="s1">median</span><span class="s2">())</span>
+<span class="s1">print</span><span class="s2">(</span><span class="s1">df</span><span class="s2">[</span><span class="s3">'Overall Qual'</span><span class="s2">].</span><span class="s1">median</span><span class="s2">())</span>
+
+<span class="s4">#simetricas medias e medinas são próximas</span>
+<span class="s4">#Assimetrica possitiva media é maior</span>
+<span class="s4">#assimetrica negativa media é menor</span>
+<span class="s1">print</span><span class="s2">(</span><span class="s3">&quot;verificando assimetria&quot;</span><span class="s2">)</span>
+<span class="s1">print</span><span class="s2">(</span><span class="s1">df</span><span class="s2">[</span><span class="s3">'SalePrice'</span><span class="s2">].</span><span class="s1">hist</span><span class="s2">())</span>
+<span class="s1">print</span><span class="s2">(</span><span class="s1">df</span><span class="s2">[</span><span class="s3">'Gr Liv Area'</span><span class="s2">].</span><span class="s1">hist</span><span class="s2">())</span>
+<span class="s1">print</span><span class="s2">(</span><span class="s1">df</span><span class="s2">[</span><span class="s3">'Overall Qual'</span><span class="s2">].</span><span class="s1">hist</span><span class="s2">())</span>
+
+<span class="s4">#Verificando a moda de year Built (.mode())</span>
+<span class="s1">print</span><span class="s2">(</span><span class="s3">&quot;moda de YearBuilt:&quot;</span><span class="s2">,</span><span class="s1">df</span><span class="s2">[</span><span class="s3">'Year Built'</span><span class="s2">].</span><span class="s1">mode</span><span class="s2">())</span>
+
+<span class="s4">#Amplitude de SalePrice</span>
+<span class="s1">print</span><span class="s2">(</span><span class="s3">&quot;Amplitude :&quot;</span><span class="s2">,</span><span class="s1">df</span><span class="s2">[</span><span class="s3">'SalePrice'</span><span class="s2">].</span><span class="s1">max</span><span class="s2">() </span><span class="s0">- </span><span class="s1">df</span><span class="s2">[</span><span class="s3">'SalePrice'</span><span class="s2">].</span><span class="s1">min</span><span class="s2">( ))</span>
+
+<span class="s4">#variancia e desvio padrao de GrLivArea e OverallQual.</span>
+<span class="s1">print</span><span class="s2">(</span><span class="s3">&quot;variancia Gr Liv Area:&quot;</span><span class="s2">,</span><span class="s1">df</span><span class="s2">[</span><span class="s3">'Gr Liv Area'</span><span class="s2">].</span><span class="s1">var</span><span class="s2">())</span>
+<span class="s1">print</span><span class="s2">(</span><span class="s3">&quot;variancia OverallQual:&quot;</span><span class="s2">,</span><span class="s1">df</span><span class="s2">[</span><span class="s3">'Overall Qual'</span><span class="s2">].</span><span class="s1">var</span><span class="s2">())</span>
+<span class="s1">print</span><span class="s2">(</span><span class="s3">&quot;Desvio-Padrao Gr Liv Area:&quot;</span><span class="s2">,</span><span class="s1">df</span><span class="s2">[</span><span class="s3">'Gr Liv Area'</span><span class="s2">].</span><span class="s1">std</span><span class="s2">())</span>
+<span class="s1">print</span><span class="s2">(</span><span class="s3">&quot;Desvio padrao OverallQual:&quot;</span><span class="s2">,</span><span class="s1">df</span><span class="s2">[</span><span class="s3">'Overall Qual'</span><span class="s2">].</span><span class="s1">std</span><span class="s2">())</span>
+
+<span class="s4">#coeficiente de variacao</span>
+<span class="s1">CV </span><span class="s0">= </span><span class="s1">df</span><span class="s2">[</span><span class="s3">'SalePrice'</span><span class="s2">].</span><span class="s1">std</span><span class="s2">()</span><span class="s0">/</span><span class="s1">df</span><span class="s2">[</span><span class="s3">'SalePrice'</span><span class="s2">].</span><span class="s1">mean</span><span class="s2">()</span>
+<span class="s1">print</span><span class="s2">(</span><span class="s1">CV</span><span class="s0">*</span><span class="s5">100</span><span class="s2">)</span>
+<span class="s4">#Heterogênea</span>
+
+
+<span class="s4"># Calcular o 90º percentil da coluna 'Preço'</span>
+<span class="s1">percentil_90 </span><span class="s0">= </span><span class="s1">df</span><span class="s2">[</span><span class="s3">'SalePrice'</span><span class="s2">].</span><span class="s1">quantile</span><span class="s2">(</span><span class="s5">0.9</span><span class="s2">)</span>
+
+<span class="s4"># Filtrar os 10% mais caros</span>
+<span class="s1">top_10_percento </span><span class="s0">= </span><span class="s1">df</span><span class="s2">[</span><span class="s1">df</span><span class="s2">[</span><span class="s3">'SalePrice'</span><span class="s2">] </span><span class="s0">&gt;= </span><span class="s1">percentil_90</span><span class="s2">][</span><span class="s3">'SalePrice'</span><span class="s2">]</span>
+<span class="s4">#preco dos imoveis mais caros</span>
+<span class="s1">print</span><span class="s2">(</span><span class="s1">top_10_percento</span><span class="s2">)</span>
+
+<span class="s4">#Distancia interquartilica é a diferença entre Q3 e Q1</span>
+<span class="s1">quantil3 </span><span class="s0">= </span><span class="s1">df</span><span class="s2">[</span><span class="s3">'SalePrice'</span><span class="s2">].</span><span class="s1">quantile</span><span class="s2">(</span><span class="s5">0.25</span><span class="s2">)</span>
+<span class="s1">quantil1 </span><span class="s0">= </span><span class="s1">df</span><span class="s2">[</span><span class="s3">'SalePrice'</span><span class="s2">].</span><span class="s1">quantile</span><span class="s2">(</span><span class="s5">0.75</span><span class="s2">)</span>
+<span class="s1">distancia_interquantilica </span><span class="s0">= </span><span class="s1">quantil3 </span><span class="s0">- </span><span class="s1">quantil1</span>
+<span class="s1">print</span><span class="s2">(</span><span class="s3">&quot;\ndistacia interquantilica: &quot;</span><span class="s2">,</span><span class="s1">distancia_interquantilica</span><span class="s2">)</span>
+
+<span class="s4">#definicao de outlines Inferior e Superior</span>
+<span class="s1">limite_inferior </span><span class="s0">= </span><span class="s1">quantil1 </span><span class="s0">- </span><span class="s5">2.5 </span><span class="s0">* </span><span class="s1">distancia_interquantilica</span>
+<span class="s1">limite_superior </span><span class="s0">= </span><span class="s1">quantil3 </span><span class="s0">+ </span><span class="s5">2.5 </span><span class="s0">* </span><span class="s1">distancia_interquantilica</span>
+
+<span class="s4"># Filtrar os outliers</span>
+<span class="s1">outliers </span><span class="s0">= </span><span class="s1">df</span><span class="s2">[(</span><span class="s1">df</span><span class="s2">[</span><span class="s3">'SalePrice'</span><span class="s2">] </span><span class="s0">&lt; </span><span class="s1">limite_inferior</span><span class="s2">) </span><span class="s0">| </span><span class="s2">(</span><span class="s1">df</span><span class="s2">[</span><span class="s3">'SalePrice'</span><span class="s2">] </span><span class="s0">&gt; </span><span class="s1">limite_superior</span><span class="s2">)][</span><span class="s3">'SalePrice'</span><span class="s2">]</span>
+
+<span class="s4"># Mostrar os outliers</span>
+<span class="s1">print</span><span class="s2">(</span><span class="s3">&quot;Outliers detectados:&quot;</span><span class="s2">)</span>
+<span class="s1">print</span><span class="s2">(</span><span class="s1">outliers</span><span class="s2">)</span>
+
+<span class="s1">quantidade_registro_outline </span><span class="s0">= </span><span class="s1">len</span><span class="s2">(</span><span class="s1">outliers</span><span class="s2">)</span>
+<span class="s1">print</span><span class="s2">(</span><span class="s3">&quot;quantidade de registros outliner: &quot;</span><span class="s2">,</span><span class="s1">quantidade_registro_outline</span><span class="s2">)</span>
+<span class="s1">total </span><span class="s0">= </span><span class="s1">len</span><span class="s2">(</span><span class="s1">df</span><span class="s2">[</span><span class="s3">'SalePrice'</span><span class="s2">])</span>
+
+<span class="s4"># Exibir o total de registros na coluna</span>
+<span class="s1">total_registros </span><span class="s0">= </span><span class="s1">len</span><span class="s2">(</span><span class="s1">df</span><span class="s2">[</span><span class="s3">'SalePrice'</span><span class="s2">])</span>
+<span class="s1">print</span><span class="s2">(</span><span class="s3">&quot;Total de registros na coluna:&quot;</span><span class="s2">, </span><span class="s1">total_registros</span><span class="s2">)</span>
+
+
+<span class="s1">media </span><span class="s0">= </span><span class="s1">df</span><span class="s2">[</span><span class="s3">'Overall Qual'</span><span class="s2">].</span><span class="s1">mean</span><span class="s2">()</span>
+<span class="s1">desvio_padrao </span><span class="s0">= </span><span class="s1">df</span><span class="s2">[</span><span class="s3">'Overall Qual'</span><span class="s2">].</span><span class="s1">std</span><span class="s2">()</span>
+<span class="s1">z_scores </span><span class="s0">= </span><span class="s2">[(</span><span class="s1">x </span><span class="s0">- </span><span class="s1">media</span><span class="s2">) </span><span class="s0">/ </span><span class="s1">desvio_padrao </span><span class="s0">for </span><span class="s1">x </span><span class="s0">in </span><span class="s1">df</span><span class="s2">[</span><span class="s3">'Overall Qual'</span><span class="s2">]]</span>
+
+<span class="s1">print</span><span class="s2">(</span><span class="s3">&quot;Z-scores:&quot;</span><span class="s2">, </span><span class="s1">z_scores</span><span class="s2">)</span>
+
+
+<span class="s1">print </span><span class="s2">(</span><span class="s1">df</span><span class="s2">[</span><span class="s3">'Gr Liv Area'</span><span class="s2">].</span><span class="s1">corr</span><span class="s2">(</span><span class="s1">df</span><span class="s2">[</span><span class="s3">'SalePrice'</span><span class="s2">]))</span>
+<span class="s1">print</span><span class="s2">(</span><span class="s1">df</span><span class="s2">[</span><span class="s3">'Total Bsmt SF'</span><span class="s2">].</span><span class="s1">corr</span><span class="s2">(</span><span class="s1">df</span><span class="s2">[</span><span class="s3">'SalePrice'</span><span class="s2">]))</span>
+<span class="s1">print</span><span class="s2">( </span><span class="s1">df</span><span class="s2">[</span><span class="s3">'Overall Qual'</span><span class="s2">].</span><span class="s1">corr</span><span class="s2">(</span><span class="s1">df</span><span class="s2">[</span><span class="s3">'SalePrice'</span><span class="s2">]))</span>
+
+<span class="s4"># Classificação da correlação de Pearson (r):</span>
+<span class="s4"># Correlação muito forte: r entre 0.8 e 1.0 (ou -0.8 a -1.0)</span>
+<span class="s4"># Correlação forte: r entre 0.6 e 0.8 (ou -0.6 a -0.8)</span>
+<span class="s4"># Correlação moderada: r entre 0.4 e 0.6 (ou -0.4 a -0.6)</span>
+<span class="s4"># Correlação fraca: r entre 0.2 e 0.4 (ou -0.2 a -0.4)</span>
+<span class="s4"># Nenhuma correlação: r entre -0.2 e 0.2</span>
+</pre>
+</body>
+</html>
